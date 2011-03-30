@@ -1,0 +1,7 @@
+{% load sekizai_tags %}
+
+{% render_block "css" using "testapp.postprocessors.non_existing_process" %}
+
+{% addtoblock "css" %}
+my css file
+{% endaddtoblock %}

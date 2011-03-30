@@ -4,6 +4,7 @@ from classytags.parser import Parser
 from django import template
 from django.conf import settings
 from sekizai.settings import VARNAME
+from sekizai.templatetags.utils import LoadArgument
 
 register = template.Library()
 
@@ -57,14 +58,18 @@ class RenderBlock(Tag):
     
     options = Options(
         Argument('name'),
+        'using',
+        LoadArgument('postprocessors', required=False, resolve=False),
         parser_class=SekizaiParser,
     )
         
-    def render_tag(self, context, name, nodelist):
+    def render_tag(self, context, name, postprocessors, nodelist):
         if not validate_context(context):
             return nodelist.render(context)
         rendered_contents = nodelist.render(context)
         data = context[VARNAME][name].render()
+        for processor in postprocessors:
+            data = processor(data)
         return '%s\n%s' % (data, rendered_contents)
 register.tag(RenderBlock)
 

@@ -103,8 +103,7 @@ class BitDiff(object):
                     msg += '\n%s%s | ! | %s' % (a, pad, b)
             return BitDiffResult(False, msg)
 
-
-class SekizaiTestCase(TestCase):
+class SekizaiMixin(object):
     def _render(self, tpl, ctx={}, ctxclass=SekizaiContext):
         return render_to_string(tpl, ctxclass(ctx))
     
@@ -122,7 +121,9 @@ class SekizaiTestCase(TestCase):
         result = differ.test(bits)
         self.assertTrue(result.status, result.message)
         return rendered
-        
+
+
+class SekizaiTestCase(TestCase, SekizaiMixin):
     def test_01_basic(self):
         """
         Basic dual block testing
@@ -254,3 +255,27 @@ class HelperTests(TestCase):
         self.assertEqual(get_namespaces('inherit/varchain.html'), [])
         self.assertEqual(get_namespaces('inherit/subvarchain.html'), [])
         self.assertEqual(get_namespaces('inherit/nullext.html'), [])
+
+
+class PostprocessTests(TestCase, SekizaiMixin):
+    def test_string(self):
+        with SettingsOverride(DEBUG=True, TEMPLATE_DEBUG=True):
+            self._test("postprocessors/string.html", ["test"])
+        
+    def test_invalid_path(self):
+        with SettingsOverride(DEBUG=False, TEMPLATE_DEBUG=False):
+            self._test("postprocessors/invalid_path.html", ["my css file"])
+        
+    def test_invalid_path_debug(self):
+        with SettingsOverride(DEBUG=True, TEMPLATE_DEBUG=True):
+            self.assertRaises(template.TemplateSyntaxError, self._render,
+                              "postprocessors/invalid_path.html")
+        
+    def test_invalid_format(self):
+        with SettingsOverride(DEBUG=False, TEMPLATE_DEBUG=False):
+            self._test("postprocessors/invalid_format.html", ["my css file"])
+        
+    def test_invalid_format_debug(self):
+        with SettingsOverride(DEBUG=True, TEMPLATE_DEBUG=True):
+            self.assertRaises(template.TemplateSyntaxError, self._render,
+                              "postprocessors/invalid_format.html")

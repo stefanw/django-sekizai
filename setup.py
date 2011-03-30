@@ -13,5 +13,6 @@ setup(
     zip_safe=False,
     install_requires = [
         'django-classy-tags>=0.3.1',
+        'django-load',
     ],
 )

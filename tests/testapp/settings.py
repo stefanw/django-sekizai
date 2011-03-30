@@ -2,6 +2,7 @@ import os
 ADMINS = (
 )
 
+DEBUG = True
 TEMPLATE_DEBUG = True
 
 MANAGERS = ADMINS
