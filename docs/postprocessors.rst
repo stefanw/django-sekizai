@@ -6,7 +6,7 @@ Process data
 
 You might want to compress your javascript and or css files you use with
 sekizai. Since the ``render_block`` tag cannot be in a block tag (like the
-``compress`` tag from django-compressor), it accepts an optional list of
+``compress`` tag from django_compressor), it accepts an optional list of
 processor functions to process the data. You can specify the processors using
 import paths pointing to your callable, for example to call the function ``foo``
 in the package ``spam.eggs`` you use following tag::
@@ -22,3 +22,36 @@ An example processor which removes newlines would be::
 
     def my_processor(data):
         return data.replace('\n', '')
+
+
+******************
+Builtin processors
+******************
+
+sekizai.contrib.django_compressor.css
+=====================================
+
+Compresses the CSS using `django_compressor`_ and merges them into a single
+file. Requires django_compressor to be installed.
+
+
+sekizai.contrib.django_compressor.js
+====================================
+
+Compresses the Javascript using `django_compressor`_ and merges them into a
+single file. Requires django_compressor to be installed.
+
+sekizai.contrib.django_compressor.css_inline
+============================================
+
+Compresses the CSS using `django_compressor`_ and inlines the compressed CSS.
+Requires django_compressor to be installed.
+
+
+sekizai.contrib.django_compressor.js_inline
+===========================================
+
+Compresses the Javascript using `django_compressor`_ and inlines the compressed
+Javascript. Requires django_compressor to be installed.
+
+.. _django_compressor: http://django_compressor.readthedocs.org/
