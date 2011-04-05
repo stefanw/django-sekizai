@@ -1,4 +1,5 @@
 from __future__ import with_statement
+from compressor.conf import settings as compress_settings
 from difflib import SequenceMatcher
 from django import template
 from django.conf import settings
@@ -7,6 +8,8 @@ from sekizai.context import SekizaiContext
 from sekizai.helpers import validate_template, get_namespaces
 from sekizai.templatetags.sekizai_tags import validate_context
 from unittest import TestCase
+import os
+import shutil
 
 
 class SettingsOverride(object):
@@ -25,12 +28,22 @@ class SettingsOverride(object):
     def __enter__(self):
         self.old = {}
         for key, value in self.overrides.items():
-            self.old[key] = getattr(settings, key)
+            self.old[key] = getattr(settings, key, None)
             setattr(settings, key, value)
         
     def __exit__(self, type, value, traceback):
         for key, value in self.old.items():
             setattr(settings, key, value)
+
+
+class Compress(object):
+    def __enter__(self):
+        self.old_value = getattr(compress_settings, 'COMPRESS', False)
+        compress_settings.COMPRESS = True
+    
+    def __exit__(self, type, value, traceback):
+        compress_settings.COMPRESS = self.old_value
+        shutil.rmtree(os.path.join(settings.MEDIA_ROOT, 'CACHE'))
 
 
 class Match(tuple): # pragma: no cover
@@ -279,3 +292,20 @@ class PostprocessTests(TestCase, SekizaiMixin):
         with SettingsOverride(DEBUG=True, TEMPLATE_DEBUG=True):
             self.assertRaises(template.TemplateSyntaxError, self._render,
                               "postprocessors/invalid_format.html")
+    
+    def test_contrib_compressor_css(self):
+        with SettingsOverride(DEBUG=True, TEMPLATE_DEBUG=True):
+            with Compress():
+                out = self._render("postprocessors/compressor_css.html", {})
+                self.assertTrue('/media/CACHE/css/' in out)
+                self.assertFalse('one.css' in out)
+                self.assertFalse('two.css' in out)
+    
+    def test_contrib_compressor_js(self):
+        with SettingsOverride(DEBUG=True, TEMPLATE_DEBUG=True):
+            with Compress():
+                out = self._render("postprocessors/compressor_js.html", {})
+                self.assertTrue('/media/CACHE/js/' in out, out)
+                self.assertFalse('one.js' in out)
+                self.assertFalse('two.js' in out)
+                

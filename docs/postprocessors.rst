@@ -40,18 +40,3 @@ sekizai.contrib.django_compressor.js
 
 Compresses the Javascript using `django_compressor`_ and merges them into a
 single file. Requires django_compressor to be installed.
-
-sekizai.contrib.django_compressor.css_inline
-============================================
-
-Compresses the CSS using `django_compressor`_ and inlines the compressed CSS.
-Requires django_compressor to be installed.
-
-
-sekizai.contrib.django_compressor.js_inline
-===========================================
-
-Compresses the Javascript using `django_compressor`_ and inlines the compressed
-Javascript. Requires django_compressor to be installed.
-
-.. _django_compressor: http://django_compressor.readthedocs.org/

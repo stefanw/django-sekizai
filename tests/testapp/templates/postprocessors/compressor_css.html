@@ -1,0 +1,8 @@
+{% load sekizai_tags %}
+
+{% render_block "css" using "sekizai.contrib.django_compressor.css" %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" href="/media/css/one.css" media="all" /> 
+<link rel="stylesheet" type="text/css" href="/media/css/two.css" media="all" /> 
+{% endaddtoblock %}

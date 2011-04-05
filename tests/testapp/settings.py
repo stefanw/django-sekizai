@@ -28,6 +28,7 @@ ROOT_URLCONF = 'testapp.urls'
 INSTALLED_APPS = (
     'testapp',
     'sekizai',
+    'compressor',
 )
 
 TEMPLATE_LOADERS = (
