@@ -3,12 +3,12 @@ from django.template import Context
 from sekizai.context_processors import sekizai
 
 if VERSION[0] == 1 and VERSION[1] < 11:
-    BaseClass = Context
+    BaseContext = Context
 else:
-    BaseClass = dict
+    BaseContext = type('BaseContext', (Context, dict,), {})
 
 
-class SekizaiContext(BaseClass):
+class SekizaiContext(BaseContext):
     """
     An alternative context to be used instead of RequestContext in places where
     no request is available.

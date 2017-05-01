@@ -10,7 +10,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 import pep8
 
-from sekizai.context import SekizaiContext
+from sekizai.context import SekizaiContext, BaseContext
 from sekizai.helpers import get_namespaces
 from sekizai.helpers import get_varname
 from sekizai.helpers import validate_template
@@ -269,7 +269,7 @@ class SekizaiTestCase(TestCase):
         """
         self.assertRaises(
             template.TemplateSyntaxError,
-            self._render, 'basic.html', {}, template.Context
+            self._render, 'basic.html', {}, BaseContext
         )
 
     def test_complex_template_inheritance(self):
@@ -383,7 +383,7 @@ class SekizaiTestCase(TestCase):
             self.assertEqual(validate_context(django_ctx), False)
             self.assertEqual(validate_context(sekizai_ctx), True)
             bits = ['some content', 'more content', 'final content']
-            self._test('basic.html', bits, ctxclass=template.Context)
+            self._test('basic.html', bits, ctxclass=BaseContext)
 
     def test_post_processor_null(self):
         bits = ['header', 'footer']
