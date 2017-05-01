@@ -8,6 +8,8 @@ MAX_PY = (3.6)
 
 def pyiter(maxpy):
     yield 2, 7
+    if maxpy == (2, 7):
+        return
     i = 3
     while True:
         yield 3, i
