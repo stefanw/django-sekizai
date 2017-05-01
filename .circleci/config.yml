@@ -1,0 +1,36 @@
+version: '2'
+jobs:
+  build:
+    docker:
+      - image: docker/compose:1.9.0
+    working_directory: /home/
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run: docker-compose build
+      - run: docker-compose run --rm p27d13
+      - run: docker-compose run --rm p33d13
+      - run: docker-compose run --rm p27d14
+      - run: docker-compose run --rm p33d14
+      - run: docker-compose run --rm p27d15
+      - run: docker-compose run --rm p33d15
+      - run: docker-compose run --rm p27d16
+      - run: docker-compose run --rm p33d16
+      - run: docker-compose run --rm p34d16
+      - run: docker-compose run --rm p27d17
+      - run: docker-compose run --rm p33d17
+      - run: docker-compose run --rm p34d17
+      - run: docker-compose run --rm p27d18
+      - run: docker-compose run --rm p33d18
+      - run: docker-compose run --rm p34d18
+      - run: docker-compose run --rm p35d18
+      - run: docker-compose run --rm p36d18
+      - run: docker-compose run --rm p34d19
+      - run: docker-compose run --rm p35d19
+      - run: docker-compose run --rm p36d19
+      - run: docker-compose run --rm p34d110
+      - run: docker-compose run --rm p35d110
+      - run: docker-compose run --rm p36d110
+      - run: docker-compose run --rm p34d111
+      - run: docker-compose run --rm p35d111
+      - run: docker-compose run --rm p36d111

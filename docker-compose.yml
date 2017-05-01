@@ -1,0 +1,158 @@
+version: '2'
+services:
+  p27d13:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/2.7/Dockerfile
+      args:
+        - DJANGO=django>=1.3,<1.4
+  p33d13:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.3/Dockerfile
+      args:
+        - DJANGO=django>=1.3,<1.4
+  p27d14:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/2.7/Dockerfile
+      args:
+        - DJANGO=django>=1.4,<1.5
+  p33d14:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.3/Dockerfile
+      args:
+        - DJANGO=django>=1.4,<1.5
+  p27d15:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/2.7/Dockerfile
+      args:
+        - DJANGO=django>=1.5,<1.6
+  p33d15:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.3/Dockerfile
+      args:
+        - DJANGO=django>=1.5,<1.6
+  p27d16:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/2.7/Dockerfile
+      args:
+        - DJANGO=django>=1.6,<1.7
+  p33d16:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.3/Dockerfile
+      args:
+        - DJANGO=django>=1.6,<1.7
+  p34d16:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.4/Dockerfile
+      args:
+        - DJANGO=django>=1.6,<1.7
+  p27d17:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/2.7/Dockerfile
+      args:
+        - DJANGO=django>=1.7,<1.8
+  p33d17:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.3/Dockerfile
+      args:
+        - DJANGO=django>=1.7,<1.8
+  p34d17:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.4/Dockerfile
+      args:
+        - DJANGO=django>=1.7,<1.8
+  p27d18:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/2.7/Dockerfile
+      args:
+        - DJANGO=django>=1.8,<1.9
+  p33d18:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.3/Dockerfile
+      args:
+        - DJANGO=django>=1.8,<1.9
+  p34d18:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.4/Dockerfile
+      args:
+        - DJANGO=django>=1.8,<1.9
+  p35d18:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.5/Dockerfile
+      args:
+        - DJANGO=django>=1.8,<1.9
+  p36d18:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.6/Dockerfile
+      args:
+        - DJANGO=django>=1.8,<1.9
+  p34d19:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.4/Dockerfile
+      args:
+        - DJANGO=django>=1.9,<1.10
+  p35d19:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.5/Dockerfile
+      args:
+        - DJANGO=django>=1.9,<1.10
+  p36d19:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.6/Dockerfile
+      args:
+        - DJANGO=django>=1.9,<1.10
+  p34d110:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.4/Dockerfile
+      args:
+        - DJANGO=django>=1.10,<1.11
+  p35d110:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.5/Dockerfile
+      args:
+        - DJANGO=django>=1.10,<1.11
+  p36d110:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.6/Dockerfile
+      args:
+        - DJANGO=django>=1.10,<1.11
+  p34d111:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.4/Dockerfile
+      args:
+        - DJANGO=django>=1.11,<1.12
+  p35d111:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.5/Dockerfile
+      args:
+        - DJANGO=django>=1.11,<1.12
+  p36d111:
+    build:
+      context: .
+      dockerfile: .circleci/dockerfiles/3.6/Dockerfile
+      args:
+        - DJANGO=django>=1.11,<1.12

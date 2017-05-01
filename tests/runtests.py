@@ -2,6 +2,8 @@
 import os
 import sys
 
+import sekizai
+
 urlpatterns = []
 
 TEMPLATE_DEBUG = True
@@ -19,7 +21,7 @@ INSTALLED_APPS = [
 ]
 
 TEMPLATE_DIRS = [
-    os.path.join(os.path.dirname(__file__), 'sekizai', 'test_templates'),
+    os.path.join(os.path.dirname(sekizai.__file__), 'test_templates'),
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = [
