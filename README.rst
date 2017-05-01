@@ -1,5 +1,8 @@
 Please refer to the documentation in the docs/ directory or on `RTFD <https://django-sekizai.readthedocs.io/en/latest/>`_ for help.
 
+.. image:: https://circleci.com/gh/ojii/django-sekizai/tree/circle.svg?style=svg
+    :target: https://circleci.com/gh/ojii/django-sekizai/tree/circle
+
 About this project:
 
 The main reason I started this project was the lack of a good media (css/js)
@@ -16,6 +19,3 @@ extend them.
 There are some issue/restrictions with this implementation due to how the
 django template language works, but if used properly it can be very useful and
 it is the media handling framework for the django CMS (since version 2.2).
-
-.. image:: https://travis-ci.org/ojii/django-sekizai.svg?branch=master
-    :target: https://travis-ci.org/ojii/django-sekizai
